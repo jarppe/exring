@@ -1,0 +1,16 @@
+/.env
+/node_modules/
+/public/js
+/.shadow-cljs/
+/target
+/checkouts
+/out
+/.cpcache
+/.idea
+/.nrepl-*
+/.DS_Store
+/.calva/output-window/
+/.clj-kondo/.cache/
+/.lsp/.cache/
+*.log
+*.swp

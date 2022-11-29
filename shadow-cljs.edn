@@ -1,0 +1,10 @@
+;; shadow-cljs configuration
+{:deps   {:aliases [:dev :test :example :locals]}
+ :builds {:node {:target     :node-library
+                 :output-to  "target/node/index.js"
+                 :output-dir "target/node/js"
+                 :exports    {:hello node/hello}}
+          :test {:target     :node-test
+                 :output-to  "target/test/index.js"
+                 :output-dir "target/test/js"
+                 :autorun    true}}}
