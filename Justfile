@@ -1,28 +1,27 @@
 set dotenv-load := true
-project := "tech-talk"
+project := "exring"
 
 
 help:
   @just --list
 
 
+# Run tests
+test:
+  @npx shadow-cljs compile test
+
+
+# Make a release, creates a tag and pushes it
+@release version +message:
+  git tag -a {{ version }} -m "{{ message }}"
+  git push --tags
+  bash -c 'echo -n "SHA: "'
+  git rev-parse --short {{ version }}^{commit}
+
+
 # Check for outdated deps
 outdated:
-  clojure -M:srv:web:test:outdated
-
-
-# Run tests
-test +opts=":unit --focus":
-  @clear
-  @echo "Running tests..."
-  @clojure -M:test -m kaocha.runner         \
-           --reporter kaocha.report/dots    \
-           {{ opts }}
-
-
-# Run ShadowCljs command
-shadow cmd:
-  npx shadow-cljs {{ cmd }}
+  clj -M:outdated
 
 
 # Initialize dev setup:
@@ -30,11 +29,11 @@ init: clojure-setup npm-setup
   @echo "\n\nReady"
 
 
-# Clojure setup
+# Initialize Clojure
 clojure-setup:
   clojure -A:dev:test:example -P
 
 
-# NPM setup
+# Initialize NPM
 npm-setup:
   npm i

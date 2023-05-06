@@ -1,5 +1,5 @@
 (ns exring.core-test
-  (:require [clojure.test :as test :refer [deftest is testing use-fixtures async]]
+  (:require [clojure.test :as test :refer [deftest is use-fixtures async]]
             [match.core :refer [matches?]]
             ["express" :as express]
             ["axios" :as axios]
