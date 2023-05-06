@@ -13,6 +13,7 @@ test:
 
 # Make a release, creates a tag and pushes it
 @release version +message:
+  git diff --quiet || (echo "Working directory is dirty"; false)
   git tag -a {{ version }} -m "{{ message }}"
   git push --tags
   bash -c 'echo -n "SHA: "'
